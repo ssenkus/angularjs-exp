@@ -1,15 +1,24 @@
 /* Controllers */
 
 contactManager.controller('AppCtrl',
-  function AppCtrl ($scope) {
-    $scope.contacts = [{
-      name: 'Brian Ford',
-      phone: '555-555-5555',
-      address: [
-        '1600 Amphitheatre Parkway',
-        'Mountain View, CA 94043'
-      ]
-    }];
+	function AppCtrl ($scope) {
+		$scope.contacts = [{
+		name: 'Brian Ford',
+		phone: '555-555-5555',
+		address: [
+			'1600 Amphitheatre Parkway',
+			'Mountain View, CA 94043'
+		]
+		},
+	{
+		name: 'Steve Senkus',
+		phone: '111-111-1111',
+		address: [
+			'21 Jump St.',
+			'Portland, OR 97205'
+		]
+	}
+	];
   });
 
 contactManager.controller('InfoCtrl',
