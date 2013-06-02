@@ -1,23 +1,18 @@
-<div>
-	<label>Name</label>: <input ng-model="contact.name" />
+<div class="span4">
+<label>Name</label><input class="input-large" type="text" ng-model="contact.name" />
+<label>Phone Number</label><input class="input-large" type="text" ng-model="contact.phone"/>
+<label>Address 1</label><input class="input-large"  type="text" ng-model="contact.address.0" />
+<label>Address 2</label><input class="input-large"  type="text" ng-model="contact.address.1" />
+<br />
+<button class="btn btn-large btn-primary" type="submit">Submit</button>
 </div>
-<div>
-	<label>Phone Number</label>: <input ng-model="contact.phone"/>
-</div>
-<div>
-	<label>Address 1</label>: <input ng-model="contact.address.0" />
-</div>
-<div>
-	<label>Address 2</label>: <input ng-model="contact.address.1" />
-</div>
-<input type="submit" value="Submit" />
-<div>
+<div class="span4">
 	<h3>Data To Save:</h3>
-	<ul>
-		<li ng-bind="contact.name"></li>
-		<li ng-bind="contact.phone"></li>
-		<li ng-bind="contact.address.0"></li>
-		<li ng-bind="contact.address.1"></li>
+		<pre>{{contact.name}}
+{{contact.phone}}
+{{contact.address.0}}
+{{contact.address.1}}
+		</pre>
 		<!-- THIS WORKS, TOO! <li ng-bind="contact['name']"></li> -->
 	</ul>
 </div>

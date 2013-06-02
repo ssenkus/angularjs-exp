@@ -1,9 +1,12 @@
-<p ng-show="contacts.length == 0">There are no contacts here!</p>
-<ul>
-	<li ng-repeat="(id, contact) in contacts">
-		<a href="#/info/{{id}}">{{contact.name}}</a>
-		[<a href="#/edit/{{id}}">edit</a>]
-		[<a href="#/remove/{{id}}">remove</a>]
-	</li>
-</ul>
-	<a href="#/add">Add new item</a>
+<div class="span4" ng-show="contacts.length == 0">There are no contacts here!</div>
+	<div class="span4" ng-repeat="(id, contact) in contacts">
+		<a href="#/info/{{id}}"><h3>{{contact.name}}</h3></a>
+		<p>{{contact.phone}}<br />
+		{{contact.address.0}}<br />
+		{{contact.address.1}}<br /><br />
+		<a class="btn btn-info btn-mini" href="#/edit/{{id}}">edit</a>
+		
+		<a class="btn btn-danger btn-mini" href="#/remove/{{id}}">remove</a>
+		</p>
+	</div>
+<div class="span4"><a class="btn btn-primary btn-large" href="#/add">+ Add new item</a></div>

@@ -8,13 +8,46 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 	</head>
 	<body ng-controller="AppCtrl">
-		<div class="container">
-		<h1>AngularJS Contact Manager</h1>
-			[<a href="#/">index</a>]
-			[<a href="#/experiment">experiment</a>]
-			<div ng-view></div>
-
+	
+	    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#" >AngularJS Contact Manager</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="#/">Home</a></li>
+              <li><a href="#/add">Add</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+	
+	
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span3">
+				<div class="well sidebar-nav">
+					<ul class="nav nav-list">
+						<li class="nav-header">Sidebar</li>
+						<li><a href="#/">index</a></li>
+						<li><a href="#/experiment">experiment</a></li>
+					</ul>
+				</div><!--/.well -->
+			</div><!--/span-->
+			<div class="span9">
+				<div class="hero-unit" style="margin-bottom: 0px; padding: 60px 20px 30px;">
+					<h1 style="font-size: 32px!important;">AngularJS Contact Manager</h1>
+				</div>
+				<div ng-view></div>
 			</div>
+		</div>
+	</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
 		<script src="app.js"></script>
 		<script src="controllers.js"></script>

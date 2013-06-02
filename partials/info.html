@@ -1,10 +1,10 @@
-<label>View all contacts</label><input type="checkbox" ng-model="checked"><br/>
+<label class="checkbox">View all contacts<input type="checkbox" ng-model="checked"></label><br/>
 <div ng-show="checked" ><div ng-repeat="contact in contacts">
 <pre>
-{{contact.name}}
-{{contact.phone}}
-{{contact.address.0}}
-{{contact.address.1}}
+Name: {{contact.name}}
+Phone Number: {{contact.phone}}
+Street Address 1: {{contact.address.0}}
+Street Address 2: {{contact.address.1}}
 </pre></div></div>
 
 
