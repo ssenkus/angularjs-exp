@@ -1,5 +1,17 @@
-<div ng-repeat="contact in contacts">
-<p>Name: {{contact.name}}</p>
-<p>Phone Number: {{contact.phone}}</p>
-<p ng-repeat="line in contact.address">{{line}}</p>
-</div>
+<label>View all contacts</label><input type="checkbox" ng-model="checked"><br/>
+<div ng-show="checked" ><div ng-repeat="contact in contacts">
+<pre>
+{{contact.name}}
+{{contact.phone}}
+{{contact.address.0}}
+{{contact.address.1}}
+</pre></div></div>
+
+
+<div ng-hide="checked">
+<pre>
+Name: {{contact.name}}
+Phone Number: {{contact.phone}}
+Street Address 1: {{contact.address.0}}
+Street Address 2: {{contact.address.1}}
+</pre>

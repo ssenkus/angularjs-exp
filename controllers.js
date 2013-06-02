@@ -3,33 +3,34 @@
 contactManager.controller('AppCtrl',
 	function AppCtrl ($scope) {
 		$scope.contacts = [{
-		name: 'Brian Ford',
-		phone: '555-555-5555',
-		address: [
-			'1600 Amphitheatre Parkway',
-			'Mountain View, CA 94043'
-		]
-		},
-	{
-		name: 'Steve Senkus',
-		phone: '111-111-1111',
-		address: [
-			'21 Jump St.',
-			'Portland, OR 97205'
-		]
-	}
-	];
-  });
+			name: 'Brian Ford',
+			phone: '555-555-5555',
+			address: [
+				'1600 Amphitheatre Parkway',
+				'Mountain View, CA 94043'
+		]},
+		{
+			name: 'Steve Senkus',
+			phone: '111-111-1111',
+			address: [
+				'21 Jump St.',
+				'Portland, OR 97205'
+			]}
+		];
+	});
 
 contactManager.controller('InfoCtrl',
-	function InfoCtrl($scope, $routeParams) {
+	function InfoCtrl($scope, $routeParams, $location) {
 		$scope.contact = $scope.contacts[$routeParams.id];
+		$scope.all = function()  {
+			
+		}
 });
 
 contactManager.controller('AddCtrl',
 	function AddCtrl($scope, $location) {
 		$scope.contact = {};
-		$scope.add = function () {
+		$scope.add = function() {
 			$scope.contacts.push($scope.contact);
 			$location.url('/');
 	};
@@ -44,6 +45,11 @@ contactManager.controller('EditCtrl',
 		}
 });
 
+contactManager.controller('ExperimentCtrl', 
+	function EditCtrl($scope, $routeParams, $location) {
+
+});
+
 contactManager.controller('RemoveCtrl',
 	function RemoveCtrl($scope, $routeParams, $location) {
 		$scope.contact = $scope.contacts[$routeParams.id];
@@ -51,4 +57,8 @@ contactManager.controller('RemoveCtrl',
 			$scope.contacts.splice($routeParams.id, 1);
 			$location.url('/');
 		};
+		$scope.back = function() {
+			$location.url('/')
+		}
+		
 });	

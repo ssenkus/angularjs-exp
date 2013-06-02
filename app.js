@@ -8,7 +8,7 @@ var contactManager = angular.module('contactManager', [])
 			controller: 'InfoCtrl'
 		})
 		.when('info/all', {
-			templateUrl: 'partials/info.html',
+			templateUrl: 'partials/info-all.html',
 			controller: 'InfoCtrl'
 		})
 		.when('/add', {
@@ -16,8 +16,12 @@ var contactManager = angular.module('contactManager', [])
 			controller: 'AddCtrl'
 		})
 		.when('/edit/:id', {
-			templateUrl: 'edit.html',
+			templateUrl: 'partials/edit.html',
 			controller: 'EditCtrl'
+		})
+		.when('/experiment', {
+			templateUrl: 'partials/experiment.html',
+			controller: 'ExperimentCtrl'
 		})
 		.when('/remove/:id', {
 			templateUrl: 'partials/remove.html',

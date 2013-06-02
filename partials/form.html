@@ -11,3 +11,13 @@
 	<label>Address 2</label>: <input ng-model="contact.address.1" />
 </div>
 <input type="submit" value="Submit" />
+<div>
+	<h3>Data To Save:</h3>
+	<ul>
+		<li ng-bind="contact.name"></li>
+		<li ng-bind="contact.phone"></li>
+		<li ng-bind="contact.address.0"></li>
+		<li ng-bind="contact.address.1"></li>
+		<!-- THIS WORKS, TOO! <li ng-bind="contact['name']"></li> -->
+	</ul>
+</div>
