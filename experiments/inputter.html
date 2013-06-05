@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+<head>
+<script src="http://code.angularjs.org/1.0.6/angular.min.js"></script>
+<script>
+	var app = angular.module('inputApp', []);
+	
+	function InputController($scope) {
+		$scope.contacts = [
+			{type:'phone', value:'408 555 1212'},
+			{type:'email', value:'john.smith@example.org'} ];
+		 
+		$scope.greet = function() {
+			alert(this.name);
+		};
+		 
+    }
+</script>
+</head>
+<body>
+	<div ng-app>
+		<div ng-controller="InputController">
+			<input type="text" ng-model="num" /><p ng-bind="num"></p>
+			<ul>
+				<li ng-repeat="contact in contacts"><input type="text" value="{{contact.type}}" /><input type="text" value="{{contact.value}}" /></li>
+			</ul>
+		</div>
+	</div>
+	<div ng-init="">
+	</div>
+</body>
+</html>

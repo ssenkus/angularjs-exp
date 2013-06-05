@@ -1,0 +1,14 @@
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>
+		<script src="app.js"></script>
+		<script src="controllers.js"></script>
+		<div class="span4" ng-show="contacts.length == 0">There are no contacts here!</div>
+		<div class="span4" ng-repeat="(id, contact) in contacts">
+		<a href="#/info/{{id}}"><h3>{{contact.name}}</h3></a>
+		<p>{{contact.phone}}<br />
+		{{contact.address.0}}<br />
+		{{contact.address.1}}<br /><br />
+		<a class="btn btn-info btn-mini" href="#/edit/{{id}}">edit</a>
+		<a class="btn btn-danger btn-mini" href="#/remove/{{id}}">remove</a>
+		</p>
+		</div>
+	<div class="span4"><a class="btn btn-primary btn-large" href="#/add">+ Add new item</a></div>
