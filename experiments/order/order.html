@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app='shopApp'>
+    <head>
+        <title>Shopping Cart</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            #app {
+                width: 600px;
+                margin: 20px auto;
+                padding: 10px;
+                font-size: 16px;
+                font-family: Helvetica, Arial, sans-serif;
+                border: 8px double #9a9a9a;
+                height: auto;
+                background-color: #accde0;
+            }
+            h1 {
+                font-size: 40px;
+                
+            }
+            label {
+                float: left;
+                display: block;
+                width: 80px;
+            }
+            input, button, p {
+                display: block;
+                float: left;
+                width: 70px;
+                padding: 0;
+                margin: 0 2px;
+                
+            }
+            .container {
+                text-align: center;
+                float: left;
+                border: 4px double #ababab;
+                margin: 2px 0;
+                background-color: #bddef1;
+                padding: 4px;
+                
+            }
+            
+            .divider {
+                clear: both;
+                height: 1px;
+                
+            }
+        </style>
+    </head>
+    <body ng-controller="CartController">
+        <div id="app">
+            <h1>Your order</h1>
+             <div class="container">
+                <label for="titles">Name</label>
+                <input value="Quantity" />
+                <p>Item Price</p>
+                <p>Ttl Price</p>
+             </div>
+            <div class="container" ng-repeat="item in items">
+                <label for="{{$index}}">{{item.title}}</label>
+                <input ng-model="item.quantity" />
+                <p>{{item.price | currency}}</p>
+                <p> {{item.price * item.quantity | currency }}</p>
+                <button ng-click="remove($index)">Remove</button>    
+                <button ng-click="add($index)">Add</button> 
+            </div>
+            <input class="container" style="clear: left;" value="{{items.length}}" />
+            <div class="divider"></div>
+            
+                 
+        </div>
+   
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script type="text/javascript" src="scripts/order.js"
+    </body>
+</html>
