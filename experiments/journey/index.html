@@ -1,0 +1,26 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html ng-app='textApp'>
+    <head   >
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>        
+    </head>
+    <body ng-controller="TextController">
+        <h1 ng-bind='someText.message'></h1>
+        <script>
+            var app = angular.module('textApp',[]);
+            
+            app.controller('TextController', 
+                function($scope) {
+                    var someText = {};
+                    someText.message = 'You have started your journey.';
+                    $scope.someText = someText;
+                });
+            
+        </script>
+    </body>
+</html>

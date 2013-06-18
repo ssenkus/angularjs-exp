@@ -1,0 +1,49 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            input {
+                width: 20px;
+                float: left;
+            }
+            
+            p {}
+            
+            #huge {
+                font-size:50px; 
+                line-height: 38px;                
+                
+                
+            }
+        </style>
+        
+
+    </head>
+    <body>
+        <form ng-controller="ActionController"> 
+            <input type="checkbox" ng-model="youCheckedIt" />
+            <p ng-repeat="repeat" ng-show="youCheckedIt" style="margin: 0;">You checked that box, didn't you<i><span id="huge">!?</span></i>  </p>
+        </form>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.min.js"></script>        
+        <script>
+            
+
+                function ActionController($scope){
+                                    $scope.repeat = 0;
+    setInterval(function(){
+        $scope.$apply(function() {
+            $scope.repeat += 1;
+        });
+    }, 1000);
+                }
+        </script>        
+        
+    </body>
+</html>
