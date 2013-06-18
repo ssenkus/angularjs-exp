@@ -64,14 +64,15 @@
                 <p> {{item.price * item.quantity | currency }}</p>
                 <button ng-click="remove($index)">Remove</button>    
                 <button ng-click="add($index)">Add</button> 
+                
             </div>
-            <input class="container" style="clear: left;" value="{{items.length}}" />
+            <div class="container" style="clear: left;"><label>Total:</label><input class="container" style="clear: left;" value="{{totalPrice() | currency}}" /></div>
             <div class="divider"></div>
             
                  
         </div>
-   
+           
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-        <script type="text/javascript" src="scripts/order.js"
+        <script type="text/javascript" src="scripts/order.js"></script>
     </body>
 </html>
