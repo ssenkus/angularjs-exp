@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.1/pure-min.css">
+    </head>
+    <body>
+        <div class="content" style= "background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.1));width:700px; margin: 20px auto; border: 5px solid #9af; background-color: rgb(30, 150, 255); border-radius: 25px; padding:10px;" ng-app>
+            <form class="pure-form pure-form-aligned" ng-controller="FormController">
+                <fieldset>
+                    <h1 style="text-align:center">AngularJS Form Experiment</h1>
+                    <div class="pure-control-group" ng-repeat="userInput in userInputs">
+                        <label>{{ userInput.label}} </label>
+                        <input class="pure-input-1-6" type="{{userInput.type}}" ng-model="userInput.val" />
+
+                        <span class="validInputMsg">{{userInput.validInputMsg}}</span>
+                        <span ng-show="userInput.error" class="validInputMsg">Error Message: {{userInput.validInputMsg}}</span>
+                    </div>
+                    <div class="pure-control-group" ng-repeat="userSelect in userSelects"> 
+                        <label>{{ userSelect.label}} </label>
+                        <select class="">
+                            <option value="value" selected>{{userSelect.default}} </option>
+                            <option ng-repeat="(value, option) in userSelect.options" value="value">{{option}} </option>
+                        </select>
+                        
+                    </div>                
+
+                    <div class="pure-controls">
+                        <label for="cb" class="pure-checkbox">
+                            <input id="cb" type="checkbox"> I've read the terms and conditions
+                        </label>
+
+                        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                    </div>
+                </fieldset>
+            </form>
+
+
+
+
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        <script>
+            function FormController($scope) {
+                $scope.userInputs = [
+                    {
+                        label: 'First Name',
+                        type: 'text',
+                        validInputMsg: 'Enter your first name',
+                        val: '',
+                        error: false,
+                        required: true
+                    },
+                    {
+                        label: 'Last Name',
+                        type: 'text',
+                        validInputMsg: 'Enter your last name',
+                        val: '', error: false,
+                        required: true
+                    },
+                    {
+                        label: 'Street Address 1',
+                        type: 'text',
+                        validInputMsg: 'Enter your street address',
+                        val: '',
+                        error: false,
+                        required: true
+                    },
+                    {
+                        label: 'Street Address 2',
+                        type: 'text',
+                        validInputMsg: 'Enter 2nd street address',
+                        val: '',
+                        error: false,
+                        required: true
+                    },
+                    {
+                        label: 'Newsletter',
+                        type: 'checkbox',
+                        validInputMsg: 'Sign up for our free newsletter',
+                        val: '',
+                        required: true
+                    },
+                    {
+                        label: 'City',
+                        type: 'password',
+                        validInputMsg: 'Enter your city',
+                        val: '', required: true
+                    }
+                ];
+
+                $scope.userSelects = [
+                    {
+                        label: 'Employees on site',
+                        default: '- Please Select -',
+                        required: true,
+                        options: {
+                            '1_19': '1 - 19 Employees locally',
+                            '20_49': '20 - 49 Employees locally',
+                            '50_99': '50 - 99 Employees locally',
+                            '100_299': '100 - 299 Employees locally',
+                            '300_499': '300 - 499 Employees locally',
+                            '500+': '500+ Employees locally'
+
+                        }
+                    },
+                    {
+                        label: 'Country',
+                        default: '- Please Select -',
+                        required: true,
+                        options: {
+                            'US': 'United States',
+                            'CA': 'Canada',
+                            'DE': 'Germany',
+                            'RU': 'Russia'
+                        }
+                    },
+                    {
+                        label: 'Industry',
+                        default: '- Please Select -',
+                        required: true,
+                        options: {
+                            '01-09': 'Agriculture, Forestry and Fishing',
+                            '10-14': 'Mining',
+                            '15-17': 'Construction',
+                            '20-39': 'Manufacturing',
+                            '40-49': 'Transportation, Communications, Electric, Gas and Sanitary Services',
+                            '50-51': 'Wholesale Trade',
+                            '52-59': 'Retail Trade',
+                            '60-67': 'Finance, Insurance and Real Estate',
+                            '70-89': 'Services',
+                            '91-99': 'Public Administration'
+                        }
+                    }
+
+                ];
+
+            }
+
+
+
+        </script>
+    </body>
+</html>
