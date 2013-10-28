@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style>
+            body {
+                font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+                margin: auto;
+                position: relative;
+                text-align: center;
+
+            }
+            svg {
+                border: 0px solid rgba(0, 0, 0, 0.5);
+                margin: 20px auto;
+                background-color: rgba(0, 0, 0, 0.4)!important;
+                box-shadow: inset 0px 0px 100px 2px #055, 0px 0px 20px #333;
+
+            }
+            circle {
+                border-radius: 10%;
+                pointer-events: all;
+                transition 2s all linear;
+            }
+            circle:hover {
+                fill: #ff0;
+                opacity: 1;
+            }
+        </style>
+        <script src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js'></script>
+    </head>
+    <body>
+        <div ng-app="shapeApp"> 
+            <div ng-controller="SvgController">
+
+
+                <svg width="400" height="400" style="background-color: #fff;"></svg>
+                <p>sdfsdf - {{someText.message}}</p>
+                <input type="text" style="clear:both; margin: 20px; " ng-model='val' />
+                <button ng-click="{{addCircle()}}" type="button">addCircle</button>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.3/angular.min.js"></script>
+        <script>
+
+
+            var shapeApp = angular.module('shapeApp', [
+            ]);
+
+            shapeApp.controller('SvgController',
+                function($scope) {
+
+                    $scope.val = 10;
+                    var color = d3.scale.category20c();
+                    var someText = {};
+                    someText.message = 'D3.js & Angular JS';
+                    $scope.someText = someText;
+                    $scope.addCircle = function($scope, val) {
+                        console.log($scope);
+                        d3.select('svg')
+                            .selectAll("circle")
+                            .data([
+                            10,
+                            20,
+                            30
+                        ])
+                            .enter()
+                            .append("circle")
+                            .attr("cx", function(d) {
+                            return d * 5;
+                        })
+                            .attr("cy", function(d) {
+                            return d * 5;
+                        })
+                            .attr("r", function(d, i) {
+                            console.log('here', val);
+                            return 10;
+                        })
+
+                            .attr("fill", function(d, i) {
+                            return color(i);
+                        })
+                            .style('opacity', 1);
+
+
+                    };
+
+
+                }
+            );
+
+
+
+
+            /*          
+             var color = d3.scale.category20();
+             var color2 = d3.scale.category20c();
+             var dataset = [];
+             for (var i = 0; i < 100; i++) {
+             dataset.push(Math.random() * i * 20);
+             }
+             
+             function squares() {
+             d3.select('svg')
+             .selectAll("circle")
+             .data(dataset.reverse())
+             .enter()
+             .append("circle")
+             .attr("cx", function(d) {
+             return (Math.random() * 800);
+             })
+             .attr("cy", function(d) {
+             return (Math.random() * 800);
+             })
+             .attr("r", function(d) {
+             return d / 200;
+             })
+             
+             .attr("fill", function(d, i) {
+             return color(i);
+             })
+             .style('opacity', 0.1)
+             .transition()
+             .duration(function(d) {
+             return ((Math.random() * 30) * 500) + 200
+             })
+             .style('transform', 'scale(0.5,0.5)')
+             .style('opacity', 0.5)
+             .transition()
+             .duration(function(d) {
+             return ((Math.random() * 30) * 500) + 200
+             })
+             .attr("cx", function(d) {
+             return (Math.random() * 700);
+             })
+             .attr("cy", function(d) {
+             return (Math.random() * 500);
+             })
+             .attr("fill", function(d, i) {
+             return color2(Math.random() * i);
+             })
+             .style('opacity', 0.9)
+             .style('transform', 'scale(2.0,2.0)');
+             
+             /* ********A message 
+             
+             
+             
+             d3.select('svg')
+             .selectAll("text")
+             .data(['hey there'])
+             .enter()
+             .append('text')
+             .style('font-size', '50px')
+             .attr('x', 100)
+             .attr('y', 200)
+             .attr('fill', '#fff')
+             .attr('filter', 'brightness(5%)')
+             .style('text-shadow','2px 2px 2px #f00')
+             .text(function (d) {
+             return d;
+             });
+             }
+             
+             
+             
+             function swapSVGLayers(cb) {
+             
+             var rndEl, timer;
+             timer = setInterval(function() {
+             var rects = document.getElementsByTagName('circle');
+             rndEl = (Math.floor(Math.random() * rects.length));
+             if (rects.length === 100) {
+             squares();
+             }
+             document.getElementsByTagName('svg')[0].removeChild(document.getElementsByTagName('circle')[rndEl]);
+             }, 100);
+             return;
+             }
+             
+             squares();
+             swapSVGLayers(squares);
+             */
+
+
+
+        </script>
+
+    </body>
+</html>
