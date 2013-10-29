@@ -14,8 +14,7 @@
             svg {
                 border: 0px solid rgba(0, 0, 0, 0.5);
                 margin: 20px auto;
-                background-color: rgba(0, 0, 0, 0.4)!important;
-                box-shadow: inset 0px 0px 100px 2px #055, 0px 0px 20px #333;
+                background-color: rgb(0,0,0)!important;
 
             }
             circle {
@@ -73,10 +72,17 @@
                     $scope.addCircle = function() {
                         var svgContainer = d3.select('svg');
                         var rectangle = svgContainer.append("rect")
-                            .attr("x", 10)
-                            .attr("y", 10)
+                            .attr("x", function() {
+                                return Math.random() * 400;
+                            })
+                            .attr("y", function() {
+                                return Math.random() * 400;
+                            })
                             .attr("width", $scope.val)
-                            .attr("height", 100);
+                            .attr("height", 100).style('fill',function() {
+                                return color(Math.random() * 20 + 1);
+                            
+                            }).transition().duration(1000).style('opacity',0);
 
                         for (var x = 0; x < 10; x++) {
                             if ($scope.circleCount === 10) {
@@ -100,7 +106,7 @@
                                 .style('opacity', 1)
                                 .transition()
 
-                                .duration(2000)
+                                .duration(1000)
                                 .attr("fill", function() {
                                 return color(Math.random() * 20 + 1);
                             })
@@ -116,7 +122,7 @@
 
                                 .duration(1000)
                                 .attr("r", function() {
-                                return 0;
+                                return 0.5;
                             })
                         }
                         
