@@ -27,6 +27,16 @@
                 fill: #ff0;
                 opacity: 1;
             }
+
+
+
+
+
+
+
+
+
+
         </style>
         <script src='//cdnjs.cloudflare.com/ajax/libs/d3/3.3.3/d3.min.js'></script>
     </head>
@@ -38,7 +48,7 @@
                 <svg width="400" height="400" style="background-color: #fff;"></svg>
                 <p>sdfsdf - {{someText.message}}</p>
                 <input type="text" style="clear:both; margin: 20px; " ng-model='val' />
-                <button ng-click="{{addCircle()}}" type="button">addCircle</button>
+                <button ng-click="addCircle()" type="button">addCircle</button>
             </div>
         </div>
 
@@ -57,37 +67,60 @@
                     var someText = {};
                     someText.message = 'D3.js & Angular JS';
                     $scope.someText = someText;
-                    $scope.addCircle = function($scope, val) {
-                        console.log($scope);
-                        d3.select('svg')
-                            .selectAll("circle")
-                            .data([
-                            10,
-                            20,
-                            30
-                        ])
-                            .enter()
-                            .append("circle")
-                            .attr("cx", function(d) {
-                            return d * 5;
-                        })
-                            .attr("cy", function(d) {
-                            return d * 5;
-                        })
-                            .attr("r", function(d, i) {
-                            console.log('here', val);
-                            return 10;
-                        })
-
-                            .attr("fill", function(d, i) {
-                            return color(i);
-                        })
-                            .style('opacity', 1);
-
-
+                    $scope.circleCount = 0;
+                    $scope.animate = function() {
                     };
+                    $scope.addCircle = function() {
+                        var svgContainer = d3.select('svg');
+                        var rectangle = svgContainer.append("rect")
+                            .attr("x", 10)
+                            .attr("y", 10)
+                            .attr("width", $scope.val)
+                            .attr("height", 100);
 
+                        for (var x = 0; x < 10; x++) {
+                            if ($scope.circleCount === 10) {
+                                break;
+                            }
+                            d3.select('svg')
+                                .append('circle')
+                                .attr("cx", function() {
+                                return Math.random() * 400;
+                            })
+                                .attr("cy", function() {
+                                return Math.random() * 400;
+                            })
+                                .attr("r", function() {
+                                return 10;
+                            })
 
+                                .attr("fill", function() {
+                                return color(Math.random() * 20 + 1);
+                            })
+                                .style('opacity', 1)
+                                .transition()
+
+                                .duration(2000)
+                                .attr("fill", function() {
+                                return color(Math.random() * 20 + 1);
+                            })
+                                .attr("cx", function() {
+                                return Math.random() * 400;
+                            })
+                                .attr("cy", function() {
+                                return Math.random() * 400;
+                            })                                .duration(1000)
+                                .attr("r", function() {
+                                return 1;
+                            })          .transition()
+
+                                .duration(1000)
+                                .attr("r", function() {
+                                return 0;
+                            })
+                        }
+                        
+                    };
                 }
             );
 
