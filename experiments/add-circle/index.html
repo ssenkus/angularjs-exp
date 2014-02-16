@@ -34,118 +34,87 @@
     <body>
         <div ng-app="shapeApp"> 
             <div ng-controller="SvgController">
-
-
                 <svg width="400" height="400" style="background-color: #fff;"></svg>
-                <p>sdfsdf - {{someText.message}}</p>
-                <input type="text" style="clear:both; margin: 20px; " ng-model='val' />
-                <button ng-click="addCircle()" type="button">addCircle</button>
+                <p>D3.js & Angular JS</p>
+                <label>Number of circles: </label>
+                <input type="number" style="clear:both; margin: 20px;" ng-model='numEls' />
+                <select ng-model="type">
+                    <option value="">-- select an SVG type -- </option>
+                    <option ng-repeat="svg in svgs" value="{{svg}}">{{svg}}(s)</option>
+                </select>                
+                <button ng-click="add()" type="button">Add</button>
+
             </div>
         </div>
-
-        
         <script>
 
+            var shapeApp = angular.module('shapeApp', []);
+            shapeApp.controller('SvgController', function($scope) {
+                function Rect(opts) {
+                    this.x = 100;
+                    this.y = 100;
+                    this.width = 4;
+                    this.height = 4;
+                    this.fill = '#f00';
+                    var svgContainer = d3.select('svg');
+                    var rectangle = svgContainer.append("rect")
+                        .attr("x", function() {
+                        return Math.random() * 400;
+                    })
+                        .attr("y", function() {
+                        return Math.random() * 400;
+                    })
+                        .attr("width", 100)
+                        .attr("height", 100)
+                        .style('fill', function() {
+                        return color(Math.random() * 20 + 1);
 
-            var shapeApp = angular.module('shapeApp', [
-            ]);
+                    })
+                        .transition()
+                        .duration(1000)
+                        .style('opacity', 0);
+                }
 
-            shapeApp.controller('SvgController',
-                function($scope) {
+                function Circle() {
+                    this.fill = '#f00';
+                    var svgContainer = d3.select('svg');
+                    var rectangle = svgContainer.append("circle")
+                        .attr("cx", function() {
+                        return Math.random() * 400;
+                    })
+                        .attr("cy", function() {
+                        return Math.random() * 400;
+                    })
+                        .attr("r", 20)
+                        .style('fill', function() {
+                        return color(Math.random() * 20 + 1);
 
-                    $scope.val = 10;
-                    var color = d3.scale.category20c();
-                    var someText = {};
-                    someText.message = 'D3.js & Angular JS';
-                    $scope.someText = someText;
-                    $scope.circleCount = 0;
-                    $scope.animate = function() {
-                    };
-                    $scope.add = function(type, options) {
-                        switch (type) {
+                    })
+                        .transition()
+                        .duration(1000)
+                        .style('opacity', 0);
+                }
+
+                var color = d3.scale.category20c();
+                $scope.circleCount = 0;
+                $scope.svgs = ['circle', 'rect'];
+                $scope.add = function() {
+                    for (var i = 0; i < $scope.numEls; i++) {
+                        switch ($scope.type) {
                             case 'circle':
-                                var circle = new Circle(options);
+                                var circle = new Circle();
                                 break;
                             case 'rect':
-                                var rect = new Rect(options);
-                        }
-                        function Rect(opts) {
-                            this.x = opts.x;
-                            this.y = opts.y;
-                            this.width = opts.width;
-                            this.height = opts.height;
-                            this.fill = opts.fill;
-                            var svgContainer = d3.select('svg');
-                            var rectangle = svgContainer.append("rect")
-                                .attr("x", function() {
-                                return Math.random() * 400;
-                            })
-                                .attr("y", function() {
-                                return Math.random() * 400;
-                            })
-                                .attr("width", $scope.val)
-                                .attr("height", 100)
-                                .style('fill', function() {
-                                return color(Math.random() * 20 + 1);
-
-                            })
-                                .transition()
-                                .duration(1000)
-                                .style('opacity', 0);
-
-
-                        }
-
-                        for (var x = 0; x < 10; x++) {
-                            if ($scope.circleCount === 10) {
+                                var rect = new Rect();
                                 break;
-                            }
-                            d3.select('svg')
-                                .append('circle')
-                                .attr("cx", function() {
-                                return Math.random() * 400;
-                            })
-                                .attr("cy", function() {
-                                return Math.random() * 400;
-                            })
-                                .attr("r", function() {
-                                return 10;
-                            })
-
-                                .attr("fill", function() {
-                                return color(Math.random() * 20 + 1);
-                            })
-                                .style('opacity', 1)
-                                .transition()
-
-                                .duration(1000)
-                                .attr("fill", function() {
-                                return color(Math.random() * 20 + 1);
-                            })
-                                .attr("cx", function() {
-                                return Math.random() * 400;
-                            })
-                                .attr("cy", function() {
-                                return Math.random() * 400
-                                ;
-                            }).duration(1000)
-                                .attr("r", function() {
-                                return 1;
-                    
-                                }).transition()
-
-                                .duration(1000)
-                                .attr("r", function() {
-                                return 0.5;
-                            })
+                            default:
+                                console.log('switch fallthrough');
+                                break;
                         }
+                    }
 
-                    };
-                }
-            );
-
-
-
+                };
+            });
 
             /*          
              var color = d3.scale.category20();
