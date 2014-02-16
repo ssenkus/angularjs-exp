@@ -1,0 +1,26 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+    </head>
+    <body>
+        <div id="test0">Random Number {{random}}</div>
+        <div id="test1">Random Number {{random}}</div>
+        <script>    
+            var app = angular.module('app', []);
+            app.run(function($rootScope) {
+                $rootScope.random = Math.random();
+            });
+            
+            angular.bootstrap(document.getElementById('test0'), ['app']);
+            angular.bootstrap(document.getElementById('test1'), ['app']);
+            
+        </script>
+    </body>
+</html>
