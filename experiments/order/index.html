@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="shopApp">
+    <head>
+        <title>Shopping Cart</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+        <script src="scripts/order.js"></script>        
+    </head>
+    <body ng-controller="CartController">
+        <div class="container">
+            <h1>Your order</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Quantity</th>
+                                <th>Name</th>
+                                <th>Total Price</th>
+                                <th>Item Price</th>                                
+                                <th>Actions</th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in items">
+                                <td><input ng-model="item.quantity" /></td>
+                                <td>{{item.title}}</td>
+                                <td>{{item.price | currency}}</td>
+                                <td>{{item.price * item.quantity | currency }}</td>                                
+                                <td><button ng-click="remove($index)">Remove</button><button ng-click="add($index)">Add</button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                <div class="col-md-6">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><pre>{{totalPrice() | currency}}</pre></td>
+                            </tr>
+                        </tbody>
+                    </table>                
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

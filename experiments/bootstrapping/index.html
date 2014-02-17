@@ -1,7 +1,3 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,17 +6,94 @@ and open the template in the editor.
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
     </head>
     <body>
-        <div id="test0">Random Number {{random}}</div>
-        <div id="test1">Random Number {{random}}</div>
-        <script>    
+        <div id="test0">Random Number: {{random}} - <strong>To Rounded Integer:</strong> {{random | toInt }}</div>
+        <div id="test1">Random Number: {{random}}</div>
+        <script>
             var app = angular.module('app', []);
             app.run(function($rootScope) {
-                $rootScope.random = Math.random();
+                $rootScope.random = Math.random() * 10;
             });
-            
-            angular.bootstrap(document.getElementById('test0'), ['app']);
-            angular.bootstrap(document.getElementById('test1'), ['app']);
-            
+          
+            /* ben nadel's code*/
+            app.config(function($controllerProvider, $provide, $compileProvider, $filterProvider) {
+                console.log('app.config', arguments, app)
+                // Since the "shorthand" methods for component
+                // definitions are no longer valid, we can just
+                // override them to use the providers for post-
+                // bootstrap loading.
+                console.log("Config method executed.");
+
+                // Let's keep the older references.
+                app._controller = app.controller;
+                app._service = app.service;
+                app._factory = app.factory;
+                app._value = app.value;
+                app._directive = app.directive;
+
+                app._filter = app.filter;
+                // Provider-based controller.
+                app.controller = function(name, constructor) {
+
+                    $controllerProvider.register(name, constructor);
+                    return (this);
+
+                };
+
+                // Provider-based service.
+                app.service = function(name, constructor) {
+
+                    $provide.service(name, constructor);
+                    return (this);
+
+                };
+
+                // Provider-based factory.
+                app.factory = function(name, factory) {
+
+                    $provide.factory(name, factory);
+                    return (this);
+
+                };
+
+                // Provider-based value.
+                app.value = function(name, value) {
+
+                    $provide.value(name, value);
+                    return (this);
+
+                };
+
+                // Provider-based directive.
+                app.directive = function(name, factory) {
+
+                    $compileProvider.directive(name, factory);
+                    return (this);
+
+                };
+
+                app.filter = function(name, factory) {
+                    $filterProvider.register(name, factory);
+                    return (this);
+
+                };
+
+                // NOTE: You can do the same thing with the "filter"
+                // and the "$filterProvider"; but, I don't really use
+                // custom filters.
+
+            });
+
+            app.filter('toInt', function() {
+                return function(input) {
+                    return (input % 1 >= 0.5) ? Math.ceil(input) : Math.floor(input);
+                };
+            })
+
+
+
+
+            angular.bootstrap(document.getElementById('test0'), ['app'])
+            angular.bootstrap(document.getElementById('test1'), ['app'])
         </script>
     </body>
 </html>
